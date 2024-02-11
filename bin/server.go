@@ -66,4 +66,6 @@ func main() {
 
         return c.SendString("successfully toggled timeblock")
     })
+
+    app.Listen(":4201")
 }
