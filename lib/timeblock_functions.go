@@ -63,6 +63,18 @@ func ChangeTimeblockTitle(
     return nil
 }
 
+// convert a timeblock to the json version
+func ConvertToJsonTimeblock(block Timeblock) Timeblock_json {
+    return Timeblock_json {
+        Timeblock: block,
+
+        Timerows: convertTimerowsToJson(block.Timerows),
+
+        TotalTime: block.TotalTime().Minutes(),
+        Ongoing: block.Ongoing(),
+    }
+}
+
 
 
 
@@ -72,6 +84,7 @@ func ChangeTimeblockTitle(
 func newTimeblock() Timeblock {
     return Timeblock {
         Id: genUUid(),
+        Timerows: []Timerow{},
     }
 }
 
@@ -113,4 +126,18 @@ func closeTimerow(timerow *Timerow) {
     timerow.Ongoing=false
 
     timerow.End=time.Now()
+}
+
+// convert array of time rows into time rows json
+func convertTimerowsToJson(rows []Timerow) []Timerow_json {
+    var newrows []Timerow_json=[]Timerow_json{}
+
+    for i := range rows {
+        newrows=append(newrows,Timerow_json {
+            Timerow: rows[i],
+            Duration: rows[i].Duration().Minutes(),
+        })
+    }
+
+    return newrows
 }

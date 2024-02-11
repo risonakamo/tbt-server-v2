@@ -3,7 +3,6 @@
 package timeblock_lib
 
 import (
-	"fmt"
 	"time"
 )
 
@@ -11,13 +10,13 @@ import (
 type TimeblocksDict map[string]*Timeblock
 
 type Timeblock struct {
-    Id string
+    Id string `json:"id"`
 
-	Title string
+	Title string `json:"title"`
 
     // timerows should be ordered by start date, backwards. the last time row should be the
     // most latest
-	Timerows []Timerow
+	Timerows []Timerow `json:"-"`
 
     // --- derived ---
     // total of all durations of time rows
@@ -28,26 +27,25 @@ type Timeblock struct {
 }
 
 type Timerow struct {
-    Id string
+    Id string `json:"id"`
 
-	Start time.Time
-    End time.Time
+	Start time.Time `json:"start"`
+    End time.Time `json:"end"`
 
     // if ongoing, end time is invalid
-    Ongoing bool
+    Ongoing bool `json:"ongoing"`
 
     // --- derived ---
     // Duration time.Duration
 }
 
-// get duration of time row. returns -1 duration if it is still ongoing
+// get duration of time row. returns 0 duration if it is still ongoing
 func (timerow *Timerow) Duration() time.Duration {
     if timerow.Ongoing {
-        fmt.Println("error: tried to get duration of ongoing time row")
-        return time.Duration(-1)
+        return time.Duration(0)
     }
 
-    return timerow.Start.Sub(timerow.End)
+    return timerow.End.Sub(timerow.Start)
 }
 
 // return total time duration of all non-ongoing time rows
