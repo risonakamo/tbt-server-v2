@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"testing"
 	"time"
-	timeblock_lib "time-block-tracker/v2/lib"
+	timeblock_lib "time-block-tracker/v2/lib/timeblock"
 
 	"github.com/davecgh/go-spew/spew"
 	"github.com/sirupsen/logrus"

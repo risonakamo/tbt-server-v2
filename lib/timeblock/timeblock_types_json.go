@@ -1,5 +1,8 @@
 package timeblock_lib
 
+// collection of timeblock_jsons, keyed by id
+type TimeblocksDict_json map[string]*Timeblock_json
+
 // json form of timeblock, with derived fields converted into real fields
 type Timeblock_json struct {
     Timeblock

@@ -75,6 +75,20 @@ func ConvertToJsonTimeblock(block Timeblock) Timeblock_json {
     }
 }
 
+// convert all blocks in timeblock dict to json version
+func ConvertToJsonTimeblockDict(blocks TimeblocksDict) TimeblocksDict_json {
+    var newdict TimeblocksDict_json=TimeblocksDict_json{}
+
+    var id string
+    var block *Timeblock
+    for id,block = range blocks {
+        var conblock Timeblock_json=ConvertToJsonTimeblock(*block)
+        newdict[id]=&conblock
+    }
+
+    return newdict
+}
+
 
 
 
