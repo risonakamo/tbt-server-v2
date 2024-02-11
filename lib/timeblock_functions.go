@@ -4,10 +4,10 @@ package timeblock_lib
 
 import (
 	"errors"
-	"fmt"
 	"time"
 
 	"github.com/google/uuid"
+	"github.com/sirupsen/logrus"
 )
 
 // add a new timeblock to a timeblocks dict.
@@ -30,13 +30,13 @@ func ToggleTimeblock(blocks TimeblocksDict,blockId string) error {
     block,found=blocks[blockId]
 
     if !found {
-        fmt.Println("failed to find block with id:",blockId)
+        logrus.Error("failed to find block with id: ",blockId)
         return errors.New("failed to find block id")
     }
 
     toggleTimeblock(block)
 
-    fmt.Printf("toggled timeblock [%v] to %v\n",blockId,block.Ongoing())
+    logrus.Infof("toggled timeblock [%v] to %v\n",blockId,block.Ongoing())
 
     return nil
 }
@@ -54,7 +54,7 @@ func ChangeTimeblockTitle(
     block,found=blocks[blockId]
 
     if !found {
-        fmt.Println("failed to find block with id:",blockId)
+        logrus.Error("failed to find block with id: ",blockId)
         return errors.New("failed to find block id")
     }
 

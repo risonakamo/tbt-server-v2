@@ -8,7 +8,17 @@ import (
 	timeblock_lib "time-block-tracker/v2/lib"
 
 	"github.com/davecgh/go-spew/spew"
+	"github.com/sirupsen/logrus"
 )
+
+func TestMain(m *testing.M) {
+	logrus.SetFormatter(&logrus.TextFormatter{
+		ForceColors: true,
+		DisableColors: false,
+	})
+
+	m.Run()
+}
 
 // general test of timeblock lib usage
 func Test1(t *testing.T) {
