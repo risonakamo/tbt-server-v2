@@ -12,10 +12,13 @@ import (
 
 // add a new timeblock to a timeblocks dict.
 // MUTATES the dict.
-func AddTimeblock(blocks TimeblocksDict) {
+// returns the timeblock that was just made
+func AddTimeblock(blocks TimeblocksDict) *Timeblock {
     var newblock Timeblock=newTimeblock()
 
     blocks[newblock.Id]=&newblock
+
+    return &newblock
 }
 
 // starts or stops a timeblock inside of a dict. returns error if it
