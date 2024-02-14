@@ -16,7 +16,7 @@ type Timeblock struct {
 
     // timerows should be ordered by start date, backwards. the last time row should be the
     // most latest
-	Timerows []Timerow `json:"-"`
+	Timerows []Timerow `json:"timerows"`
 
     // --- derived ---
     // total of all durations of time rows

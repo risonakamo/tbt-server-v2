@@ -60,6 +60,8 @@ func Test1(t *testing.T) {
 	timeblock_lib.AddTimeblock(blocks)
 
 	spew.Dump(blocks)
+
+	timeblock_lib.SaveTimeblock(blocks,"test.json")
 }
 
 // test json output of a timeblock
