@@ -7,9 +7,15 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
+	"github.com/sirupsen/logrus"
 )
 
 func main() {
+	logrus.SetFormatter(&logrus.TextFormatter {
+		ForceColors: true,
+		DisableColors: false,
+	})
+
 	var app *fiber.App=fiber.New(fiber.Config {
         CaseSensitive: true,
         EnablePrintRoutes: false,

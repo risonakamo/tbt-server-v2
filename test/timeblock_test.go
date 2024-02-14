@@ -61,7 +61,7 @@ func Test1(t *testing.T) {
 
 	spew.Dump(blocks)
 
-	timeblock_lib.SaveTimeblock(blocks,"test.json")
+	timeblock_lib.SaveTimeblockFile(blocks,"test2.json")
 }
 
 // test json output of a timeblock
@@ -94,4 +94,17 @@ func Test_jsonconvert(t *testing.T) {
 	}
 
 	fmt.Println(string(res))
+}
+
+// test loading test.json
+func Test_loadFile(t *testing.T) {
+	var timeblocks timeblock_lib.TimeblocksDict
+	var e error
+	timeblocks,e=timeblock_lib.LoadTimeblockFile("test.json")
+
+	if e!=nil {
+		t.Error(e)
+	}
+
+	spew.Dump(timeblocks)
 }
