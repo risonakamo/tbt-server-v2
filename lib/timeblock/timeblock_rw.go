@@ -40,7 +40,8 @@ func LoadTimeblockFile(filepath string) (TimeblocksDict,error) {
     rfile,e=os.ReadFile(filepath)
 
     if e!=nil {
-        fmt.Println("failed to read timeblock file")
+        fmt.Println("failed to load timeblock file")
+        fmt.Println(e)
         return make(TimeblocksDict),e
     }
 
@@ -49,6 +50,7 @@ func LoadTimeblockFile(filepath string) (TimeblocksDict,error) {
 
     if e!=nil {
         fmt.Println("failed to parse timeblock file")
+        fmt.Println(e)
         return make(TimeblocksDict),e
     }
 
